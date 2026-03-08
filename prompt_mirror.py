@@ -78,12 +78,12 @@ if 'cached_data' not in st.session_state:
 # --- Translations Dictionary ---
 TRANSLATIONS = {
     'page_title': {
-        'en': "SPR - Mind Cockpit",
-        'zh': "SPR - 全能思维驾驶舱"
+        'en': "Prompt Mirror",
+        'zh': "Prompt Mirror"
     },
     'page_caption': {
-        'en': "🚀 From Quantity to Quality: Visualize Your Thinking Patterns & Evolution",
-        'zh': "🚀 From Quantity to Quality: 洞察你的思维模式与进化路径"
+        'en': "Visualize your thinking patterns & watch your mind evolve",
+        'zh': "可视化你的思维模式，见证你的认知进化之路"
     },
     'upload_header': {
         'en': "📤 Data Center",
@@ -408,7 +408,7 @@ OBJECTIVITY_STOPWORDS = {
 }
 
 # 页面配置
-st.set_page_config(page_title="SPR Mind Cockpit", layout="wide", page_icon="🧠")
+st.set_page_config(page_title="Prompt Mirror", layout="wide", page_icon="🔮")
 
 # --- Query Param Routing (For Privacy Policy) ---
 if st.query_params.get("page") == "privacy":
@@ -817,16 +817,78 @@ st.markdown(luxury_css, unsafe_allow_html=True)
 
 
 # --- Top Bar: Language Toggle Only ---
-col_title, col_lang = st.columns([6, 1])
+# --- Hero Header ---
+_lang_label = "CN" if st.session_state.lang == 'en' else "EN"
+_caption = t('page_caption')
+st.markdown(f"""
+<style>
+@keyframes shimmer {{
+  0% {{ background-position: -200% center; }}
+  100% {{ background-position: 200% center; }}
+}}
+@keyframes fade-up {{
+  from {{ opacity: 0; transform: translateY(24px); }}
+  to   {{ opacity: 1; transform: translateY(0); }}
+}}
+.pm-hero {{
+  padding: 48px 0 36px;
+  text-align: center;
+  animation: fade-up 0.7s ease both;
+}}
+.pm-logo {{
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: block;
+}}
+.pm-wordmark {{
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  background: linear-gradient(90deg, #D4AF37 0%, #fff8dc 40%, #D4AF37 60%, #b8860b 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  display: block;
+  margin-bottom: 14px;
+}}
+.pm-tagline {{
+  font-size: 16px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.3px;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}}
+.pm-divider {{
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  margin: 20px auto 0;
+  border-radius: 2px;
+}}
+.pm-lang-btn {{
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  z-index: 999;
+}}
+</style>
+<div class="pm-hero">
+  <span class="pm-logo">🔮</span>
+  <span class="pm-wordmark">Prompt Mirror</span>
+  <p class="pm-tagline">{_caption}</p>
+  <div class="pm-divider"></div>
+</div>
+""", unsafe_allow_html=True)
 
-with col_lang:
-    if st.button("🌐 " + ("CN" if st.session_state.lang == 'en' else "EN"), help="Switch Language"):
+_col_spacer, _col_lang = st.columns([8, 1])
+with _col_lang:
+    if st.button("🌐 " + _lang_label, help="Switch Language"):
         st.session_state.lang = 'zh' if st.session_state.lang == 'en' else 'en'
         st.rerun()
-
-with col_title:
-    st.title(t('page_title'))
-    st.caption(t('page_caption'))
 
 
 # --- 侧边栏：上传与配置 ---
@@ -851,10 +913,10 @@ with st.sidebar:
         st.markdown("Login to sync data across devices")
         col_gh, col_gl = st.columns(2)
         with col_gh:
-            if st.button("🐙 GitHub", use_container_width=True):
+            if st.button("GitHub", use_container_width=True, icon=":material/code:"):
                 st.markdown(f'<meta http-equiv="refresh" content="0;url={API_BASE_URL}/auth/github">', unsafe_allow_html=True)
         with col_gl:
-            if st.button("🔵 Google", use_container_width=True):
+            if st.button("Google", use_container_width=True, icon=":material/account_circle:"):
                 st.markdown(f'<meta http-equiv="refresh" content="0;url={API_BASE_URL}/auth/google">', unsafe_allow_html=True)
 
     st.divider()
@@ -948,8 +1010,9 @@ def show_onboarding_guide():
         html_content = """
 <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
 <div style="font-size: 60px; margin-bottom: 20px;">🚀</div>
-<h2 style="color: #D4AF37;">Welcome to Mind Cockpit</h2>
-<p style="color: rgba(255,255,255,0.7); font-size: 18px; margin-bottom: 30px;">Your personal thinking analytics dashboard is ready.</p>
+<div style="font-size:52px;margin-bottom:4px;">🔮</div>
+<div style="font-size:32px;font-weight:800;letter-spacing:-1px;background:linear-gradient(90deg,#D4AF37,#fff8dc,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;">Prompt Mirror</div>
+<p style="color: rgba(255,255,255,0.6); font-size: 16px; margin-bottom: 30px;">Your personal thinking analytics dashboard is ready.</p>
 <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 40px;">
 <div class="animate-arrow-ur" style="font-size: 40px; color: #4cc9f0;">↗️</div>
 <div style="text-align: left;">
