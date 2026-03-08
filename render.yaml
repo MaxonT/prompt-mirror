@@ -3,7 +3,8 @@
 
 databases:
   - name: prompt-mirror-db
-    plan: starter
+    plan: free                      # Free tier: 1 GB storage, expires after 90 days of inactivity
+                                    # Upgrade to plan: basic-256mb for persistent production data
     databaseName: prompt_mirror
     user: prompt_mirror_user
     ipAllowList: []                 # Render internal networking
