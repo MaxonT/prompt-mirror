@@ -107,7 +107,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
   document.getElementById('sync-btn').onclick = handleSync;
   document.getElementById('login-btn').onclick = handleLogin;
-  
+  document.getElementById('modal-close-btn').onclick = closeLoginModal;
+  document.getElementById('github-login-btn').onclick = handleGithubLogin;
+  document.getElementById('google-login-btn').onclick = handleGoogleLogin;
+  document.getElementById('login-modal').onclick = (e) => {
+    if (e.target.id === 'login-modal') closeLoginModal();
+  };
+
   // Manage Data Views
   document.getElementById('manage-btn').onclick = showManageView;
   document.getElementById('back-btn').onclick = showDashboardView;
@@ -408,13 +414,26 @@ function escapeHtml(text) {
 async function handleLogin() {
   const { authToken } = await chrome.storage.local.get("authToken");
   if (authToken) {
-    // Already logged in → logout
     await chrome.storage.local.remove("authToken");
     updateAuthUI();
     return;
   }
-  // Open GitHub OAuth flow in new tab
+  // Show provider selection modal
+  document.getElementById('login-modal').style.display = 'flex';
+}
+
+function closeLoginModal() {
+  document.getElementById('login-modal').style.display = 'none';
+}
+
+function handleGithubLogin() {
+  closeLoginModal();
   chrome.tabs.create({ url: `${API_BASE}/auth/github` });
+}
+
+function handleGoogleLogin() {
+  closeLoginModal();
+  chrome.tabs.create({ url: `${API_BASE}/auth/google` });
 }
 
 async function handleSync() {
