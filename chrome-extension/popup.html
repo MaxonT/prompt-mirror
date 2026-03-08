@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Prompt Mirror</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="libs/chart.umd.js"></script>
+</head>
+<body>
+  <header>
+    <h1><span>🔮</span> Prompt Mirror</h1>
+    <div class="actions">
+      <button id="theme-btn" title="Toggle Theme">🌙</button>
+      <button id="lang-btn" title="Switch Language" style="font-size: 10px; font-weight: bold; width: auto; padding: 4px 8px;">EN</button>
+      <button id="main-site-btn" title="Open Main Site">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+      </button>
+      <button id="scan-btn" title="Scan Current Page">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+          <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+          <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+          <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+          <rect x="7" y="7" width="10" height="10" rx="1"></rect>
+        </svg>
+      </button>
+      <button id="export-btn" title="Export Data">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Dashboard View -->
+    <div id="dashboard-view">
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Today</div>
+          <div class="kpi-value" id="today-count">0</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total Prompts</div>
+          <div class="kpi-value" id="total-count">0</div>
+        </div>
+      </div>
+
+      <!-- Charts Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="radar">Skill Radar</button>
+        <button class="tab-btn" data-tab="pie">Type Dist.</button>
+      </div>
+
+      <!-- Chart Canvas -->
+      <div class="chart-container">
+        <canvas id="mainChart"></canvas>
+      </div>
+
+      <!-- Recent List -->
+      <div class="list-header">
+        <h2>Recent</h2>
+        <span style="font-size:11px;color:rgba(255,255,255,0.5)" id="last-sync">Just now</span>
+      </div>
+      <div class="prompt-list" id="recent-list">
+        <!-- Items will be injected here -->
+      </div>
+
+      <!-- Privacy & Data Controls -->
+      <div class="privacy-footer">
+        <a href="#" id="privacy-link" style="color: rgba(255,255,255,0.4); font-size: 11px; text-decoration: none;">Privacy Policy</a>
+        <div style="display: flex; gap: 6px; align-items: center;">
+          <button id="sync-btn" style="font-size: 11px; display: none;">Sync to Cloud</button>
+          <button id="login-btn" style="font-size: 11px;">Login</button>
+          <button id="manage-btn">Manage Data</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage View -->
+    <div id="manage-view">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+        <button id="back-btn" style="padding:4px 8px; font-size:12px;">← Back</button>
+        <h2 style="margin:0; font-size:14px; color:var(--text);">Data Manager</h2>
+        <button id="clear-all-btn" style="color:#ff4757; font-size:11px;">Clear All</button>
+      </div>
+      <div id="manage-list" style="max-height: 450px; overflow-y: auto;">
+        <!-- Manage Items injected here -->
+      </div>
+    </div>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

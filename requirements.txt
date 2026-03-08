@@ -1,0 +1,10 @@
+streamlit
+pandas
+jieba
+matplotlib
+wordcloud
+plotly
+numpy
+nltk
+ijson
+requests

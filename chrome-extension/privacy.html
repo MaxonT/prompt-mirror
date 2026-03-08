@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Prompt Mirror - Privacy Policy</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --card: rgba(255, 255, 255, 0.05);
+      --primary: #D4AF37;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --text: #1e293b;
+        --card: #ffffff;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 { color: var(--primary); border-bottom: 1px solid rgba(128,128,128,0.2); padding-bottom: 10px; }
+    h2 { margin-top: 30px; font-size: 1.2em; color: var(--primary); }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      border: 1px solid rgba(128,128,128,0.1);
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <h1>Prompt Mirror Privacy Policy</h1>
+  <p><strong>Last Updated:</strong> 2026/1/3</p>
+
+  <p>This Privacy Policy explains how Prompt Mirror (“we,” “our,” or “the Extension/App”) handles information when you use our Chrome extension and related website/product pages.</p>
+
+  <div class="card">
+    <h2>1) Scope</h2>
+    <p>This Privacy Policy applies to:</p>
+    <ul>
+      <li>The Prompt Mirror Chrome extension (“Extension”)</li>
+      <li>The Prompt Mirror website / landing page / documentation (“Website”)</li>
+    </ul>
+    <p>If you are viewing our Website via a third-party hosting provider (e.g., Streamlit), that provider may collect certain technical logs as described below.</p>
+  </div>
+
+  <h2>2) Our Privacy Principles (Plain English)</h2>
+  <ul>
+    <li><strong>Local-first:</strong> By default, your prompt records and analytics are stored locally in your browser.</li>
+    <li><strong>User control:</strong> You can export or delete your data at any time.</li>
+    <li><strong>No background scraping:</strong> The Extension does not continuously monitor your browsing. It only runs when you interact with it.</li>
+    <li><strong>Data minimization:</strong> We do not ask for sensitive personal data to use core features.</li>
+  </ul>
+
+  <h2>3) What Information We Collect</h2>
+
+  <h3>A. Data you provide / create inside the Extension (Local by default)</h3>
+  <p>When you use the Extension, it may store the following locally on your device:</p>
+  <ul>
+    <li>Prompt text you choose to record (e.g., text you type or select)</li>
+    <li>Timestamps (when a prompt was recorded)</li>
+    <li>Basic source context (e.g., site domain or a page identifier, if enabled)</li>
+    <li>Analytics derived from your prompts (counts, trends, summaries)</li>
+    <li>Extension preferences/settings (allowlist, toggles, display settings)</li>
+  </ul>
+  <p><strong>Important:</strong> This data is stored locally in your browser storage unless you explicitly enable a feature that sends data elsewhere (see Section 5).</p>
+
+  <h3>B. Website technical data (Hosting logs)</h3>
+  <p>Our Website may be hosted by a third-party platform (e.g., Streamlit). Like most hosting services, it may automatically collect:</p>
+  <ul>
+    <li>IP address</li>
+    <li>Device/browser type</li>
+    <li>Pages viewed and timestamps</li>
+    <li>Basic diagnostic logs (crash/latency)</li>
+  </ul>
+  <p>We use these logs only for security, reliability, and performance monitoring.</p>
+
+  <h3>C. Data we do NOT intentionally collect</h3>
+  <p>We do not intentionally collect:</p>
+  <ul>
+    <li>Government IDs, passwords, financial/payment card details</li>
+    <li>Health or medical information</li>
+    <li>Precise GPS location</li>
+    <li>Sensitive categories (unless you voluntarily type them into your own prompts)</li>
+  </ul>
+  <p>If you include sensitive info in your prompts, it will be treated as part of your prompt data and will remain local unless you export/share it.</p>
+
+  <h2>4) How We Use Information</h2>
+  <p>We use information to:</p>
+  <ul>
+    <li>Provide core functionality (recording prompts, generating analytics)</li>
+    <li>Store your settings and preferences</li>
+    <li>Maintain service security and stability (website logs, if any)</li>
+    <li>Improve UX and fix bugs (aggregated, non-identifying insights when possible)</li>
+  </ul>
+
+  <h2>5) Sharing & Disclosure</h2>
+  <h3>A. We do not sell your data</h3>
+  <p>We do not sell, rent, or trade your personal data.</p>
+  
+  <h3>B. Local storage by default</h3>
+  <p>Prompt data and analytics remain on your device by default.</p>
+
+  <h3>C. Optional network requests (if applicable)</h3>
+  <p>If the Extension provides optional features that require network requests (e.g., syncing, cloud backup, or calling a user-configured analysis endpoint), those requests:</p>
+  <ul>
+    <li>Are triggered by your action or enabled settings</li>
+    <li>Are limited to the minimum data needed for the feature</li>
+    <li>Do not download or execute remote code inside the Extension</li>
+  </ul>
+  <p>If you do not enable such features, no prompt content is transmitted.</p>
+
+  <h3>D. Legal and safety</h3>
+  <p>We may disclose information if required by law or to protect rights and safety (e.g., responding to lawful requests).</p>
+
+  <h2>6) Permissions & Why We Need Them (Chrome Extension)</h2>
+  <p>Depending on your build, the Extension may request:</p>
+  <ul>
+    <li><strong>storage:</strong> to save prompt records, analytics, and user settings locally</li>
+    <li><strong>activeTab / scripting:</strong> to read user-entered/selected text on the current page only when you trigger an action (e.g., “Record/Analyze”)</li>
+    <li><strong>host permissions (site access):</strong> to run on user-approved sites where you want to record prompts (preferably allowlisted domains)</li>
+  </ul>
+  <p>The Extension is designed to operate only on user action and does not continuously scan pages in the background.</p>
+
+  <h2>7) Data Retention</h2>
+  <ul>
+    <li>Local prompt data is retained until you delete it.</li>
+    <li>Website logs (if any) are retained for a limited period as required for security and performance, then deleted or anonymized.</li>
+  </ul>
+
+  <h2>8) Data Security</h2>
+  <p>We use reasonable measures to protect data:</p>
+  <ul>
+    <li>Local-first storage reduces transmission risk</li>
+    <li>Access is limited to user-triggered actions and allowed sites</li>
+  </ul>
+  <p>However, no method of storage is 100% secure. You are responsible for safeguarding exported files you download.</p>
+
+  <h2>9) Your Choices & Rights</h2>
+  <p>You can:</p>
+  <ul>
+    <li>View, export, and delete your stored prompt data within the Extension</li>
+    <li>Disable recording on specific sites via allowlist/denylist settings</li>
+    <li>Uninstall the Extension to remove local data (depending on browser behavior)</li>
+  </ul>
+  <p>If you have questions or requests, contact us at: <a href="mailto:ming.t.yang@vanderbilt.edu">ming.t.yang@vanderbilt.edu</a></p>
+
+  <h2>10) Children’s Privacy</h2>
+  <p>Prompt Mirror is not intended for children under 13 (or the minimum age required in your region). We do not knowingly collect personal data from children.</p>
+
+  <h2>11) International Users</h2>
+  <p>If you access the Website from outside the hosting region, your connection may involve cross-border data transmission of basic technical logs. Prompt data remains local by default unless you enable features that transmit it.</p>
+
+  <h2>12) Changes to This Policy</h2>
+  <p>We may update this policy from time to time. We will revise the “Last Updated” date and, if changes are material, provide a more prominent notice.</p>
+
+  <h2>13) Contact</h2>
+  <p>Prompt Mirror Team<br>
+  Email: <a href="mailto:ming.t.yang@vanderbilt.edu">ming.t.yang@vanderbilt.edu</a></p>
+
+</body>
+</html>

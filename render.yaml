@@ -1,0 +1,53 @@
+# Render Blueprint — Prompt Mirror (Full Stack)
+# Deploy: Connect GitHub repo → Render auto-detects this file → One-click deploy
+
+databases:
+  - name: prompt-mirror-db
+    plan: starter
+    databaseName: prompt_mirror
+    user: prompt_mirror_user
+    ipAllowList: []                 # Render internal networking
+
+services:
+  # ── Backend API (FastAPI) ──
+  - type: web
+    name: prompt-mirror-api
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: prompt-mirror-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GITHUB_CLIENT_ID
+        sync: false                 # Set manually in Render dashboard
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: API_BASE_URL
+        value: https://prompt-mirror-api.onrender.com
+      - key: FRONTEND_URL
+        value: https://prompt-mirror-analytics.onrender.com
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+
+  # ── Frontend Analytics (Streamlit) ──
+  - type: web
+    name: prompt-mirror-analytics
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run prompt_mirror.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true
+    envVars:
+      - key: API_BASE_URL
+        value: https://prompt-mirror-api.onrender.com
+      - key: PYTHON_VERSION
+        value: "3.11.9"
