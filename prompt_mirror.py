@@ -870,9 +870,10 @@ st.markdown(f"""
   color: rgba(255,255,255,0.5);
   letter-spacing: 0.4px;
   max-width: 480px;
-  margin: 0 auto;
+  margin: 0 auto !important;
   line-height: 1.7;
-  text-align: center;
+  text-align: center !important;
+  display: block;
 }}
 .pm-divider {{
   width: 48px;
@@ -904,7 +905,7 @@ st.markdown(f"""
     </svg>
   </div>
   <span class="pm-wordmark">Prompt Mirror</span>
-  <p class="pm-tagline">{_caption}</p>
+  <p class="pm-tagline" style="text-align:center !important;">{_caption}</p>
   <div class="pm-divider"></div>
 </div>
 """, unsafe_allow_html=True)
@@ -946,7 +947,7 @@ with st.sidebar:
 }}
 .oauth-sidebar-btn:hover {{ opacity: 0.85; text-decoration: none; }}
 .gh-btn {{ background: #24292e; color: #ffffff; }}
-.gl-btn {{ background: #ffffff; color: #3c4043; border: 1px solid #dadce0; }}
+.gl-btn {{ background: linear-gradient(135deg, rgba(66,133,244,0.18) 0%, rgba(251,188,5,0.16) 45%, rgba(234,67,53,0.12) 75%, rgba(52,168,83,0.14) 100%); color: #ffffff; border: 1px solid rgba(251,188,5,0.35); }}
 </style>
 <a href="{API_BASE_URL}/auth/github" target="_self" class="oauth-sidebar-btn gh-btn">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
