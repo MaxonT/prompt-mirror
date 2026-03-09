@@ -830,18 +830,29 @@ st.markdown(f"""
   from {{ opacity: 0; transform: translateY(24px); }}
   to   {{ opacity: 1; transform: translateY(0); }}
 }}
+@keyframes spin-slow {{
+  from {{ transform: rotate(0deg); }}
+  to   {{ transform: rotate(360deg); }}
+}}
 .pm-hero {{
-  padding: 48px 0 36px;
+  padding: 52px 0 40px;
   text-align: center;
   animation: fade-up 0.7s ease both;
 }}
-.pm-logo {{
-  font-size: 48px;
-  margin-bottom: 12px;
-  display: block;
+.pm-icon-wrap {{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(184,134,11,0.06));
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 40px rgba(212,175,55,0.12);
 }}
 .pm-wordmark {{
-  font-size: clamp(42px, 6vw, 72px);
+  font-size: clamp(48px, 6vw, 76px);
   font-weight: 800;
   letter-spacing: -2px;
   line-height: 1;
@@ -852,32 +863,46 @@ st.markdown(f"""
   background-clip: text;
   animation: shimmer 3s linear infinite;
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }}
 .pm-tagline {{
-  font-size: 16px;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.3px;
-  max-width: 520px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.4px;
+  max-width: 480px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.7;
+  text-align: center;
 }}
 .pm-divider {{
-  width: 60px;
+  width: 48px;
   height: 2px;
   background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-  margin: 20px auto 0;
+  margin: 22px auto 0;
   border-radius: 2px;
-}}
-.pm-lang-btn {{
-  position: fixed;
-  top: 16px;
-  right: 24px;
-  z-index: 999;
 }}
 </style>
 <div class="pm-hero">
-  <span class="pm-logo">🔮</span>
+  <div class="pm-icon-wrap">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#D4AF37"/>
+          <stop offset="100%" stop-color="#b8860b"/>
+        </linearGradient>
+      </defs>
+      <!-- bars -->
+      <rect x="4" y="22" width="6" height="12" rx="1.5" fill="url(#g1)" opacity="0.5"/>
+      <rect x="13" y="14" width="6" height="20" rx="1.5" fill="url(#g1)" opacity="0.75"/>
+      <rect x="22" y="7" width="6" height="27" rx="1.5" fill="url(#g1)"/>
+      <!-- trend line -->
+      <polyline points="7,22 16,13 25,6" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+      <!-- dot -->
+      <circle cx="25" cy="6" r="2.2" fill="#D4AF37"/>
+      <!-- sparkle -->
+      <path d="M32 2 L33.2 5.8 L37 7 L33.2 8.2 L32 12 L30.8 8.2 L27 7 L30.8 5.8Z" fill="#D4AF37" opacity="0.9"/>
+    </svg>
+  </div>
   <span class="pm-wordmark">Prompt Mirror</span>
   <p class="pm-tagline">{_caption}</p>
   <div class="pm-divider"></div>
@@ -1027,26 +1052,32 @@ def show_onboarding_guide():
     st.markdown("<br><br>", unsafe_allow_html=True)
     c1, c2, c3 = st.columns([1, 2, 1])
     with c2:
-        # Flattened HTML to prevent Markdown code block parsing
         html_content = """
-<div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
-<div style="font-size: 60px; margin-bottom: 20px;">🚀</div>
-<div style="font-size:52px;margin-bottom:4px;">🔮</div>
-<div style="font-size:32px;font-weight:800;letter-spacing:-1px;background:linear-gradient(90deg,#D4AF37,#fff8dc,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;">Prompt Mirror</div>
-<p style="color: rgba(255,255,255,0.6); font-size: 16px; margin-bottom: 30px;">Your personal thinking analytics dashboard is ready.</p>
-<div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 40px;">
-<div class="animate-arrow-ur" style="font-size: 40px; color: #4cc9f0;">↗️</div>
-<div style="text-align: left;">
-<div style="font-weight: bold; color: #fff; font-size: 20px;">Step 1</div>
-<div style="color: rgba(255,255,255,0.6);">Click Extension in top-right to export <code>my_prompts.json</code></div>
+<div style="text-align:center;padding:44px 36px;background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border-radius:24px;border:1px solid rgba(255,255,255,0.08);">
+<svg width="52" height="52" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:16px;">
+  <defs><linearGradient id="og1" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#b8860b"/></linearGradient></defs>
+  <rect x="4" y="22" width="6" height="12" rx="1.5" fill="url(#og1)" opacity="0.5"/>
+  <rect x="13" y="14" width="6" height="20" rx="1.5" fill="url(#og1)" opacity="0.75"/>
+  <rect x="22" y="7" width="6" height="27" rx="1.5" fill="url(#og1)"/>
+  <polyline points="7,22 16,13 25,6" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+  <circle cx="25" cy="6" r="2.2" fill="#D4AF37"/>
+  <path d="M32 2 L33.2 5.8 L37 7 L33.2 8.2 L32 12 L30.8 8.2 L27 7 L30.8 5.8Z" fill="#D4AF37" opacity="0.9"/>
+</svg>
+<div style="font-size:26px;font-weight:800;letter-spacing:-1px;background:linear-gradient(90deg,#D4AF37,#fff8dc,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;">Prompt Mirror</div>
+<p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:36px;line-height:1.6;">Your personal thinking analytics dashboard is ready.</p>
+<div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;">
+  <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#D4AF37,#b8860b);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#0f172a;flex-shrink:0;">1</div>
+  <div style="text-align:left;">
+    <div style="font-weight:600;color:#fff;font-size:14px;margin-bottom:2px;">Export from Extension</div>
+    <div style="color:rgba(255,255,255,0.5);font-size:12px;">Click the extension icon, then export <code style="background:rgba(212,175,55,0.15);padding:1px 5px;border-radius:4px;color:#D4AF37;">my_prompts.json</code></div>
+  </div>
 </div>
-</div>
-<div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 20px;">
-<div class="animate-arrow" style="font-size: 40px; color: #4cc9f0;">👈</div>
-<div style="text-align: left;">
-<div style="font-weight: bold; color: #fff; font-size: 20px;">Step 2</div>
-<div style="color: rgba(255,255,255,0.6);">Drag & Drop file to the sidebar</div>
-</div>
+<div style="display:flex;align-items:center;justify-content:center;gap:16px;">
+  <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#D4AF37,#b8860b);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#0f172a;flex-shrink:0;">2</div>
+  <div style="text-align:left;">
+    <div style="font-weight:600;color:#fff;font-size:14px;margin-bottom:2px;">Upload to Dashboard</div>
+    <div style="color:rgba(255,255,255,0.5);font-size:12px;">Drag &amp; drop the file into the sidebar</div>
+  </div>
 </div>
 </div>
 """
