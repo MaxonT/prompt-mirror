@@ -408,7 +408,7 @@ OBJECTIVITY_STOPWORDS = {
 }
 
 # 页面配置
-st.set_page_config(page_title="Prompt Mirror", layout="wide", page_icon="🔮")
+st.set_page_config(page_title="Prompt Mirror", layout="wide", page_icon="logo.png")
 
 # --- Query Param Routing (For Privacy Policy) ---
 if st.query_params.get("page") == "privacy":
